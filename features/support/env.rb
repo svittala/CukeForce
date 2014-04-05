@@ -1,5 +1,6 @@
 require 'capybara/cucumber'
 Capybara.default_driver = :selenium
+Capybara.match =:first	
 Capybara.app_host ="https://login.salesforce.com"
 def uriSplitter (arg1)
 # returns the last element of the url - ususlly SFDC ID

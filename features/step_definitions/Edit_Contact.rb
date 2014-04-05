@@ -1,34 +1,34 @@
 Given(/^I am on the Contacts tab as title "(.*?)"$/) do |arg1|
-click_on('Contacts Tab')
-expect(page).to have_title "Contacts: Home ~ salesforce.com - Enterprise Edition"
+	click_on('Contacts Tab')
+	expect(page).to have_title arg1
 end
 
-When(/^I select the Username as "(.*?)"$/) do |arg1|
-click_link('Washington, George')
+
+When(/^I select the contact "(.*?)"$/) do |arg1|
+# how to address multiple matches .. use match:= first in env.rb file
+	click_link(arg1)
 end
 
 When(/^I hit the Edit button$/)do
- # find(:xpath, ".//*[@id='topButtonRow']/input[3]").click
-within(:xpath, ".//*[@id='topButtonRow']") do
-find_button('Edit').click
-end
+	within(:xpath, ".//*[@id='topButtonRow']") do
+		find_button('Edit').click
+	end
 end
 
 When(/^I select salutation as "(.*?)"$/) do |arg1|
-  select("Mr.",:from=> "name_salutationcon2")
+  select(arg1,:from=> "name_salutationcon2")
 end
 
 When(/^I enter the title as "(.*?)"$/) do |arg1|
-  fill_in('con5', :with => "Manager")
+  fill_in('con5', :with => arg1)
 end
 
 When(/^I click the Save button to save the changes$/) do
- # find(:xpath, ".//*[@id='topButtonRow']/input[1]").click
-within(:xpath, ".//*[@id='topButtonRow']") do
-find_button('Save').click
+	within(:xpath, ".//*[@id='topButtonRow']") do
+	find_button('Save').click
 end
 end
 
 Then(/^I should see the updated contact details as "(.*?)"$/) do |arg1|
-  page.should have_content('Mr. George Washington')
+  page.should have_content(arg1)
 end
