@@ -4,7 +4,7 @@ Given(/^I am on the Contacts tab as title "(.*?)"$/) do |arg1|
 end
 
 
-When(/^I select the contact "(.*?)"$/) do |arg1|
+When(/^I select the Contact "(.*?)"$/) do |arg1|
 # how to address multiple matches .. use match:= first in env.rb file
 	click_link(arg1)
 end
