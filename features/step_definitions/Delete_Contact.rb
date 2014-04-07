@@ -3,7 +3,8 @@ click_on('Contacts Tab')
 expect(page).to have_title "Contacts: Home ~ salesforce.com - Enterprise Edition"
 end
 
-When(/^ When I select the contact "(.*?)"$/) do |arg1|
+
+When(/^I select a contact "(.*?)"$/) do |arg1|
 click_link(arg1)
 end
 

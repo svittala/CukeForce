@@ -33,20 +33,22 @@ Scenario: This is the first scenario for login confirmation
   And I click the Save button to save the changes
   Then I should see the updated contact details as "Mr. George Washington"
 
-@DeleteContact
-  Scenario: Deleting a Contact
-  Given I am on the Contacts tab title "Contacts: Home ~ salesforce.com - Enterprise Edition"
-  When I select the contact "Washington, George"
-  And I hit the Delete button
-  And I select OK from the confirmation popup
-  Then I should not see the Contact "Washington, George"
 
 @Createtask
   Scenario: Creating New Task
   Given I am on Contacts tab title "Contacts: Home ~ salesforce.com - Enterprise Edition"
-  When I select the contact "Washington, George"
+  When I select contact "Washington, George"
   And I click the button "New Task"
   And I enter the details in the page as "New Assignment", "4/5/2014", "This is the sample assignment on Salesforce automation", "4/8/2014"
   And I make the selections for "Solution", "Contact","In Progress", "High","9:30 AM"
   And I click Save button
-  Then I should see the task assignment in the page
+  Then I should see the task assignment "New Assignment" in the page
+
+
+@DeleteContact
+  Scenario: Deleting a Contact
+  Given I am on the Contacts tab title "Contacts: Home ~ salesforce.com - Enterprise Edition"
+  When I select a contact "Washington, George"
+  And I hit the Delete button
+  And I select OK from the confirmation popup
+  Then I should not see the Contact "Washington, George"

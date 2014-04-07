@@ -3,16 +3,14 @@ Given(/^I am on Contacts tab title "(.*?)"$/) do |arg1|
   click_on('Contacts Tab')
 end
 
-When(/^I select Username "(.*?)"$/) do |arg1|
-  click_link('Washington, George')
+When(/^I select contact "(.*?)"$/) do |arg1|
+  click_link(arg1)
 end
 
 When(/^I click the button "(.*?)"$/) do |arg1|
-	find_button('New Task').click
+	find_button(arg1).click
 end
 
-When(/^I enter the details in the page as "(.*?)", "(.*?)","(.*?)", "(.*?)"$/) do |arg1, arg2, arg3, arg4|
-end
 
 When(/^I enter the details in the page as "(.*?)", "(.*?)", "(.*?)", "(.*?)"$/) do |arg1, arg2, arg3, arg4|
 	fill_in('tsk5', :with => arg1)
@@ -35,10 +33,10 @@ When(/^I click Save button$/) do
 	end
 end
 
-Then(/^I should see the task assignment in the page$/) do
+Then(/^I should see the task assignment "(.*?)" in the page$/) do |arg1|
 	tag = tagMaker('RelatedActivityList')
 	# use xpath to identify the relatedActivityList - in the contact page
 	within(:xpath, tag) do
-		page.should have_content('New Assignment on SalesForce')
+		page.should have_content(arg1)
 	end
 end
