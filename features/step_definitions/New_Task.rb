@@ -1,16 +1,4 @@
-
-Given(/^I am on Contacts tab title "(.*?)"$/) do |arg1|
-  click_on('Contacts Tab')
-end
-
-When(/^I select contact "(.*?)"$/) do |arg1|
-  click_link(arg1)
-end
-
-When(/^I click the button "(.*?)"$/) do |arg1|
-	find_button(arg1).click
-end
-
+# only fill specific scripts that are for New Tasks
 
 When(/^I enter the details in the page as "(.*?)", "(.*?)", "(.*?)", "(.*?)"$/) do |arg1, arg2, arg3, arg4|
 	fill_in('tsk5', :with => arg1)
@@ -27,6 +15,35 @@ When(/^I make the selections for "(.*?)", "(.*?)","(.*?)", "(.*?)","(.*?)"$/) do
 	select(arg5, :from=> "reminder_dt_time")
 end
 
+When(/^I assign task to "(.*?)"$/) do |arg1|
+	#Code for the Lookup screen
+	find(:xpath, ".//*[@id='whobtn']/img").click
+
+	#Get the main window handle
+	main = page.driver.browser.window_handles.first
+
+	#Get the popup window handle
+	popup = page.driver.browser.window_handles.last
+
+	#Then switch control between the windows
+	page.driver.browser.switch_to.window(popup) do
+
+		page.driver.browser.switch_to.frame 'searchFrame'
+		puts "In the child window"  
+		fill_in('lksrch', :with => arg1)
+		click_on(' Go! ')
+		page.driver.browser.switch_to.default_content
+		page.driver.browser.switch_to.frame 'resultsFrame'
+		click_link(arg1)
+	end #end for Child Frame
+
+	#page.save_screenshot 'childwindow.png'
+
+	page.driver.browser.switch_to.window(main)
+
+	#End of Lookup code.
+end
+
 When(/^I click Save button$/) do
 	within(:xpath, ".//*[@id='topButtonRow']") do
 		find_button('Save').click
@@ -34,7 +51,7 @@ When(/^I click Save button$/) do
 end
 
 Then(/^I should see the task assignment "(.*?)" in the page$/) do |arg1|
-	tag = tagMaker('RelatedActivityList')
+	tag = tagMaker('RelatedActivityList','/')
 	# use xpath to identify the relatedActivityList - in the contact page
 	within(:xpath, tag) do
 		page.should have_content(arg1)
