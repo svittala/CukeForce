@@ -16,3 +16,32 @@ def tagMaker (sectiontitle,seperator)
 	return searchtag
 end
 
+# Following method will read the Label and fill in the respective field with the given data
+def fillField (fieldname,value)
+@thefield = all("label").detect { |l| (l.text =~ /#{fieldname}/i).nil? == false }
+if @thefield.nil? then
+    raise Exception.new("Couldn't find field #{fieldname}")
+  end
+fill_in @thefield[:for], :with=>value
+ 
+end
+ 
+# Following method will read the Label and selects the value from the dropdown list
+def selectValue (fieldname,value)
+@thefield = all("label").detect { |l| (l.text =~ /#{fieldname}/i).nil? == false }
+if @thefield.nil? then
+    raise Exception.new("Couldn't find field #{fieldname}")
+  end
+select(value,:from=> @thefield[:for])
+end
+ 
+ 
+# Following method will read the Label and checks the respective checkbox
+def checkBox(fieldname)
+@thefield = all("label").detect { |l| (l.text =~ /#{fieldname}/i).nil? == false }
+if @thefield.nil? then
+    raise Exception.new("Couldn't find field #{fieldname}")
+  end
+check(@thefield[:for])
+end
+ 

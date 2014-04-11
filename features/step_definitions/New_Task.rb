@@ -44,12 +44,6 @@ When(/^I assign task to "(.*?)"$/) do |arg1|
 	#End of Lookup code.
 end
 
-When(/^I click Save button$/) do
-	within(:xpath, ".//*[@id='topButtonRow']") do
-		find_button('Save').click
-	end
-end
-
 Then(/^I should see the task assignment "(.*?)" in the page$/) do |arg1|
 	tag = tagMaker('RelatedActivityList','/')
 	# use xpath to identify the relatedActivityList - in the contact page
