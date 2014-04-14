@@ -16,7 +16,7 @@ Given(/^I am on the Visualforce Tab "(.*?)" with main title "(.*?)"$/) do |tabna
 end
 
 When(/^I click on "(.*?)" button$/) do |buttontext|
-  click_on buttontext
+  find_button(buttontext).click
 end
 
 
