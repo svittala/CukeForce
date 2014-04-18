@@ -7,8 +7,9 @@ When I lookup the "Customer X" then
 I should be able to locate the building details on my iPad
 
 @AssessBuilding
-Given I am at the "Customer X" Building Details for "Building 1"
-I should be able to verify the following
+Given I am at the "Customer X" 
+When I provide Building Details for "Building 1"
+And I verify the following
 |square footage 	| 9800|
 |number of floors	| 14 |
 |age 				      | 12 |
