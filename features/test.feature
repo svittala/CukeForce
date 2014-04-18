@@ -11,7 +11,7 @@ Given I am at the "Customer X" Building Details for "Building 1"
 I should be able to verify the following
 |square footage 	| 9800|
 |number of floors	| 14 |
-|age 				| 12
+|age 				      | 12 |
 |safety features	|"Special features"|
 |Code Compliance	| "No Vialotions found"|
 And I should be able to submit the Asset Documentation to Internal System
