@@ -1,49 +1,43 @@
-Feature: Additional Sample Scenarios for learing
- @tableuse 
-  Scenario Outline: List views shows Bid Board as an option for Territory Manager 
-    Given I am logged in as a Territory Manager
-    When I navigate to <viewname1> view
-    Then I should see <list1> of opportunities
-    And "Bid Board" column is in the listview
+Scenario:
+As an Under writer I should be able to assess value and risk of a building that belongs to a customer
 
-  Examples:
-    |viewname1|list1| 
-    |Closing Next Month|list1|
-    |Closing This Month|list1|
-    |My Open Private Opportunities|list1|
-    |New Open Opportunities this Week|list1|
-    |New This Week|list1|
+@LocateBuildingData
+Given I am at a "Customer X" building site
+When I lookup the "Customer X" then
+I should be able to locate the building details on my iPad
 
-    Scenario: some cukes
-    Given I have 48 cukes in my belly
-    Then I had a good meal
+@AssessBuilding
+Given I am at the "Customer X" 
+When I provide Building Details for "Building 1"
+And I verify the following
+|square footage 	| 9800|
+|number of floors	| 14 |
+|age 				      | 12 |
+|safety features	|"Special features"|
+|Code Compliance	| "No Vialotions found"|
+And I should be able to submit the Asset Documentation to Internal System
+And I should be able to initiate Supervisor Approval workflow
 
-@listuse
-   Scenario: some scenario
-   Given a set of specific users
-     | name      | department  |
-     | Barry     | Beer Cans   |
-     | Pudey     | Silly Walks |
-     | Two-Lumps | Silly Walks |
+@SuperVisorFeedbackReview
+Given I receive supervisor feedback on Missing Data
+I should be able to review the Supervisor Remarks
+And Update the missing fields
+|Date of City Inspection| '04\16\2014'|
+|Date of FireStation Cert | '04\11\2014'|
+And reinitiate the approval workflow
 
- When we count the number of people in each department
- Then we will find two people in "Silly Walks"
-  But we will find one person in "Beer Cans"
+@ReviewApprovedSubmission
+Given I receive supervisor Approval on Document Submission
+I should be able to Open Risk Assessment Application
+And I should be able to view SFDC information in the Risk Assessment System
+And I should be able to Initiate Risk Scoring
+And I should be able to Initiate Predictive Analysis Scoring
+And I should be able to review policy score from Internal system
+And I should be able to sign "complete assessment"
+And I should be able to initiate Document Transfer to Assessor 
 
-@junky
-  Scenario Outline: Sign Up
-    Given I am on the <language> site
-    And I am on the home page
-    When I follow "<register>"
-    And I fill in the following:
-      | <fname> | John |
-      | <lname> | Doe  |
-    And I check "paintball"
-    And I fill in the following within Emergency Contact:
-      | <ename>   | Jane Doe   |
-      | <enumber> | 4161111111 |
-    Then I should see "John Doe"
-    Examples:
-      | language | register  | fname         | lname     | ename | enumber  |
-      | en       | Register  | First Name    | Last Name | Name  | Number   |
-      | pt       | Registrar | Primeiro Nome | Sobrenome | Nome  | Telefone |
+Opens the risk assessment apps to assess risk score based on information submitted. SFDC events trigger risk scoring to a legacy risk scoring engine and submits collected date for scoring of the policy.
+Information is used to submit a predictive analytics score.
+Information returned over SOA services now helps define a policy and details of that is sent out to the assessor.
+UI data collection-> UI events – UI Object updates -> Data Object updates -> Triggers -> Workflow update-> wait for review and approval from supervisor real-time-> assess exceptions and update -> submit -> APEX code -> Direct Database insert/update in legacy system -> submit data to risk scoring module -> reply over API or web services or APEX code
+Proceed to next step based on result returned
