@@ -62,3 +62,49 @@ end
 RSpec.configure do |config|
   config.include WaitForAjax, type: :feature
 end
+
+
+#Following method will look up for a Contact/Opportunity
+# It is taking two parameters: As of now, I observed two types of buttons (Whobtn, Whtbtn). One to lookup the related Opportunities, Products, other one is related to the Contacts. If we get more button types from other places, then simply we can expand the below "Switch/Case" to accommodate them.
+# It will click on the lookup icon, gives the search text and finally clicks on the link
+#In the step definition, you can call the above definition as below:
+#lookUp("Name","Abraham Lincon") # This will click on the "Name" Lookup, search for the user and finally clicks the link from the search results.
+#lookUp("Related To","AppLogic") # This will click on the "Related To" Lookup, search for the related stuff and finally clicks that link from the search results.
+ 
+def lookUp(btntype,name)
+# Switch/Case to identify the button type
+  case btntype
+    when "Related To"
+      btype = "whtbtn"
+    when "Name"
+      btype = "whobtn"
+    else
+      puts "Failed to do the lookp up"
+  end
+   
+  #Xpath based on the button type
+  find(:xpath, ".//*[@id='"+btype+"']/img").click
+   
+  #Get the main window handle
+  main = page.driver.browser.window_handles.first
+   
+  #Get the popup window handle
+  popup = page.driver.browser.window_handles.last
+ 
+  #Then switch control between the windows
+  page.driver.browser.switch_to.window(popup) do
+    page.driver.browser.switch_to.frame 'searchFrame'
+    fill_in('lksrch', :with => name) # Giving the name to search
+    click_on(' Go! ')
+   
+    page.driver.browser.switch_to.default_content
+    page.has_title? "Search ~ salesforce.com - Enterprise Edition"
+    page.driver.browser.switch_to.frame 'resultsFrame'
+
+    click_link(name) # Clicking on the link from the search results.
+  end #end for Child Frame
+   
+  page.driver.browser.switch_to.window(main)
+end # end of look up def
+ 
+ 

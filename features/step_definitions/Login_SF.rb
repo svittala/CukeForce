@@ -11,6 +11,3 @@ puts page.title
 expect(page).to have_title arg1
 end
 
-Then(/^I should see an active tab "(.*?)"$/) do |arg1|
-page.should have_xpath(".//*[@id='home_Tab']/a", :text => 'Home')
-end

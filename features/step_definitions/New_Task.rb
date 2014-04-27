@@ -15,7 +15,9 @@ When(/^I make the selections for "(.*?)", "(.*?)","(.*?)", "(.*?)","(.*?)"$/) do
 	select(arg5, :from=> "reminder_dt_time")
 end
 
-When(/^I assign task to "(.*?)"$/) do |arg1|
+
+
+When(/^I assign tasks to "(.*?)"$/) do |arg1|
 	#Code for the Lookup screen
 	find(:xpath, ".//*[@id='whobtn']/img").click
 

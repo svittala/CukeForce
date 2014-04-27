@@ -1,0 +1,37 @@
+Scenario:
+As an Under writer I should be able to assess value and risk of a building that belongs to a customer
+
+@LocateBuildingData
+Given I am at a "Customer X" building site
+When I lookup the "Customer X"
+Then I should be able to locate the building details on my iPad
+
+@AssessBuilding
+Given I am at the "Customer X" 
+When I enter Building Details for "Building 1"
+And I verify the following
+|square footage 	| 9800|
+|number of floors	| 14 |
+|age 				| 12 |
+|safety features	|"Special features"|
+|Code Compliance	| "No Vialotions found"|
+And I should be able to submit the Asset Documentation to Internal System
+Then I should be able to initiate Supervisor Approval workflow
+
+@SuperVisorFeedbackReview
+Given I receive supervisor feedback on Missing Data
+I should be able to review the Supervisor Remarks
+And Update the missing fields
+|Date of City Inspection| '04\16\2014'|
+|Date of FireStation Cert | '04\11\2014'|
+Then I should be able to reinitiate the approval workflow
+
+@ReviewApprovedSubmission
+Given I receive supervisor Approval on Document Submission
+I should be able to Open Risk Assessment Application
+And I should be able to view SFDC information in the Risk Assessment System
+And I should be able to Initiate Risk Scoring
+And I should be able to Initiate Predictive Analysis Scoring
+And I should be able to review policy score from Internal system
+Then I should be able to sign "complete assessment"
+And I should be able to initiate Document Transfer to Assessor 

@@ -3,7 +3,13 @@ Feature: Demo Salesforce Features
 Background: 
   Given I am on the Salesforce home page
   When I Login as "bdd_tester@csc.com" with password "Sales@4ce"
-  Then I should see an active tab "Home"
+  Then I should see "BDD Tester Vittala" as the logged in user
+
+@SwitchtoSales
+Scenario: Goto Sales application
+  Given I select application "Sales"
+  Then I should see an active tab "Contacts"
+  And I should see an active tab "Accounts"
 
 @ValidateLogin
 Scenario: login confirmation
@@ -41,7 +47,7 @@ Scenario: login confirmation
   And I select "Lead Source" as "Partner"
   And I select Checkbox "Partner Converted?"
   And I click on "Save" button
-  Then I should see "Mr. George Washington" in the page
+  Then I should see "(703) 465-5777" in the page
 
 
 @CreateTask
@@ -54,6 +60,7 @@ Scenario: login confirmation
   And I make the selections for "Solution", "Contact","In Progress", "High","9:30 AM"
   And I assign task to "Abraham Lincon"
   And I click on "Save" button
+  And I am on the "Home Tab" with main title  "salesforce.com - Enterprise Edition"
   Then I should see "New Assignment" in the page
 
 
@@ -73,11 +80,10 @@ Scenario: login confirmation
   Given I am on the Opportunities tab with title "Opportunities: Home ~ salesforce.com - Enterprise Edition"
   When I use listview "<viewName>" view
   Then I should see list of opportunities
-    
-  Examples:
+    Examples:
     |viewName| 
-    |Closing Next Month|
-    |Closing This Month|
+    |Closing Next Month| 
+    |Closing This Month| 
     |My Opportunities|
     |All Opportunities|
     |New This Week|
