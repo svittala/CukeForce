@@ -2,7 +2,7 @@ Feature: Demo Visualforce Page Testing
 
 Background: 
   Given I am on the Salesforce home page
-  When I Login as "svittala.personal@hotmail.com" with password "Sales@4ce"
+  When I Login as "myuser" with password "xxxxx"
   Then I should see an active tab "Home"
 
 @ValidateLogin
