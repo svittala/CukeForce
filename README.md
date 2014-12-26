@@ -11,6 +11,7 @@ edit the .feature file to update your salesforce.com userid and pwd
 
 to run the feature file "cucumber" at the command prompt.
 
+For Installation of Cucumber for windows use the instructions from this <a href="http://www.agileforall.com/2011/08/getting-started-with-ruby-cucumber-and-capybara-on-windows/" > blog by Richard Lawrence </a>
 
 Support Utilities
 =================
