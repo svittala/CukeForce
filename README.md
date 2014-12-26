@@ -6,7 +6,7 @@ using Cucumber and Capybara for Salesforce.com BDD
 Usage:
 ======
 
-Make sure you have ruby and  ruby on rails installed
+Make sure you have ruby and  ruby on rails installed -  <i> Currently only supports Ruby 1.9.3 for Windows </i>
 Here is some excellent instructions on the installation Cucumber for windows <a href="http://www.agileforall.com/2011/08/getting-started-with-ruby-cucumber-and-capybara-on-windows/" > blog by Richard Lawrence </a> 
 <p>
 If you get SSL Certification errors see this blog on <a href="https://gist.github.com/fnichol/867550" > how to Install SSL Certification for Ruby on Rails </a>
