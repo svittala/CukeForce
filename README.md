@@ -5,13 +5,18 @@ using Cucumber and Capybara for Salesforce.com BDD
 
 Usage:
 ======
-Make sure you have ruby installed, ruby on rails installed
-go to the features folder
-edit the .feature file to update your salesforce.com userid and pwd
 
-to run the feature file "cucumber" at the command prompt.
+Make sure you have ruby and  ruby on rails installed
+Here is some excellent instructions on the installation Cucumber for windows <a href="http://www.agileforall.com/2011/08/getting-started-with-ruby-cucumber-and-capybara-on-windows/" > blog by Richard Lawrence </a> 
+<p>
+If you get SSL Certification errors see this blog on <a href="https://gist.github.com/fnichol/867550" > how to Install SSL Certification for Ruby on Rails </a>
+<p>
 
-For Installation of Cucumber for windows use the instructions from this <a href="http://www.agileforall.com/2011/08/getting-started-with-ruby-cucumber-and-capybara-on-windows/" > blog by Richard Lawrence </a>
+Once Cucumber is installed  download the Cukeforce into a your Cukeforce Project folder 
+
+Next go to the features folder edit the .feature file to update your salesforce.com userid and pwd
+
+Simply run the feature file by typing "cucumber" at the command prompt.
 
 Support Utilities
 =================
