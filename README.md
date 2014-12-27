@@ -10,6 +10,7 @@ Here is some excellent instructions on the installation Cucumber for windows <a 
 <p>
 If you get SSL Certification errors see this blog on <a href="https://gist.github.com/fnichol/867550" > how to Install SSL Certification for Ruby on Rails </a>
 <p>
+Make sure Selenium Webdriver is installed 'gem install selenium-webdriver'
 
 Once Cucumber is installed  download the Cukeforce into a your Cukeforce Project folder 
 
